@@ -1,0 +1,15 @@
+﻿@model List<BlogMvc.Models.Article>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Tag Detail</h1>
+
+
+@foreach (var item in Model)
+{
+ <h2><p>@item.ArticleTitle</p></h2>
+    <p>@item.ArticleContent</p>
+}

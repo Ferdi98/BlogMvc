@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "LoginUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model BlogMvc.ViewModel.LoginViewModel
+ 
+ 
+
+    <div style="text-align:left;">
+        <h1>Login User</h1>
+        @using (Html.BeginForm("LoginUser","LoginUsers", FormMethod.Post, null))
+        {
+            @Html.ValidationSummary()
+            <div>
+                @*<input id="user" type="text" placeholder="" />*@
+                @Html.TextBoxFor(x=>x.Username, new { @placeholder = "Username" })
+                <label for="user" class="entypo-user"></label>
+            </div>
+            <div>
+                @*<input id="pwd" type="password" placeholder="" />*@
+                @Html.PasswordFor(x => x.Password, new { @placeholder = "Password" })
+                <label for="pwd" class="entypo-lock"></label>
+
+            </div>
+            <div class="buttons">
+                <form asp-action="Login">
+                    <input type="hidden" asp-for="Username" />
+                    <input type="submit" class="btn btn-danger" /> |
+                    <a asp-action="Index">Back to List</a>
+                </form>
+                <span>
+                   
+                        <ul id="nav" class="nav">
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="LoginUsers" asp-action="Create">Kayıt Olun </a></li>
+                        </ul>
+                    
+                </span>
+            </div>
+        }
+    </div>
+   

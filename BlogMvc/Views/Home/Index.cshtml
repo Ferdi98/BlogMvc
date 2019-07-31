@@ -1,0 +1,51 @@
+﻿
+@model BlogMvc.ViewModel.HomeViewModel
+
+    <div id="content-wrap">
+
+        <div class="row">
+
+            <div id="main" class="eight columns">
+                
+                @foreach (var article in Model.Articles)
+                {
+                    <article class="entry">
+
+                        <header class="entry-header">
+
+                            <h2 class="entry-title">
+                                <a href="@Url.Action("Details","Blog", new { @article.ID })">@article.ArticleTitle</a>
+                            </h2>
+
+                            <div class="entry-meta">
+                                <ul>
+                                    <li>@article.ArticleDate</li>
+                                    <span class="meta-sep">&bull;</span>                                    
+                                    <li>
+                                        @foreach (var tag in article.ArticleTags)
+                                        {
+                                            <a href="@Url.Action("Index","Tags", new { @tag.TagID } )">@tag.Tag.TagName<text>,</text></a>
+                                        }
+                                    </li>
+                                    <span class="meta-sep">&bull;</span>
+                                    <li>John Doe</li>
+                                </ul>
+                            </div>
+                        </header>
+
+                        <div class="entry-content">
+                            <p>
+                                @(article.ArticleContent.Length > 150 ? @article.ArticleContent.Substring(0, 150) : @article.ArticleContent)<text>...</text>
+                            </p>
+                        </div>
+                    </article> <!-- end entry -->
+                }
+            </div> <!-- end main -->
+
+            @Html.Partial("SidePartial")
+
+        </div> <!-- end row -->
+
+    </div> <!-- end content-wrap -->
+   
+
